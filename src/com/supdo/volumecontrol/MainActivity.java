@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 	private  OnSeekBarChangeListener  sbCallingListener = new OnSeekBarChangeListener() {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progress, AudioManager.FLAG_PLAY_SOUND);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progress, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
 		}
 		@Override
 		public void onStartTrackingTouch(SeekBar arg0) {
