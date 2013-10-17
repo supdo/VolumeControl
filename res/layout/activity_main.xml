@@ -43,9 +43,8 @@
                            android:layout_gravity="center"
                            android:src="@drawable/ic_volume_calling" />
 
-
                        <SeekBar
-                           android:id="@+id/seekBar1"
+                           android:id="@+id/sbCalling"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
                            android:max="15"
