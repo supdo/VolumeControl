@@ -19,6 +19,7 @@
             android:id="@+id/mainLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal|center"
             android:orientation="vertical" >
 
             <!-- 表格布局 -->
@@ -47,16 +48,7 @@
                            android:id="@+id/sbCalling"
                            android:layout_width="match_parent"
                            android:layout_height="wrap_content"
-                           android:max="15"
-                           android:progress="5" />
-
-                       <TextView
-                           android:id="@+id/textView2"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:minWidth="50dp"
-                           android:paddingTop="6dp"
-                           android:text="通话" />
+                           android:layout_marginRight="18dp" />
                  
                 </TableRow>
                 <!-- 表格布局：中间行 -->
@@ -74,17 +66,10 @@
                         android:src="@drawable/ic_volume_called" />
 
                     <SeekBar
-                        android:id="@+id/seekBar2"
+                        android:id="@+id/sbCalled"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/TextView01"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:paddingTop="6dp"
-                        android:text="铃声" />
+                        android:layout_marginRight="18dp" />
 
                 </TableRow>
                 <!-- 表格布局：中间行 -->
@@ -102,17 +87,10 @@
                         android:src="@drawable/ic_volume_chat" />
 
                     <SeekBar
-                        android:id="@+id/seekBar2"
+                        android:id="@+id/sbChat"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/TextView02"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:paddingTop="6dp"
-                        android:text="铃声" />
+                        android:layout_marginRight="18dp" />
 
                 </TableRow>
                 <!-- 表格布局：中间行 -->
@@ -130,17 +108,10 @@
                         android:src="@drawable/ic_volume_alarms" />
 
                     <SeekBar
-                        android:id="@+id/seekBar2"
+                        android:id="@+id/sbAlarms"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/TextView03"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:paddingTop="6dp"
-                        android:text="闹钟" />
+                        android:layout_marginRight="18dp" />
 
                 </TableRow>
                 <!-- 表格布局：中间行 -->
@@ -158,17 +129,10 @@
                         android:src="@drawable/ic_volume_media" />
 
                     <SeekBar
-                        android:id="@+id/seekBar2"
+                        android:id="@+id/sbMedia"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/TextView04"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:paddingTop="6dp"
-                        android:text="媒体" />
+                        android:layout_marginRight="18dp" />
 
                 </TableRow>
                 <!-- 表格布局：最后一行 -->
@@ -185,20 +149,11 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_volume_system" />
 
-                    
                     <SeekBar
-                        android:id="@+id/seekBar3"
+                        android:id="@+id/sbSystem"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    
-                    <TextView
-                        android:id="@+id/TextView05"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:minWidth="50dp"
-                        android:paddingTop="6dp"
-                        android:text="系统" />
-                    
+                        android:layout_marginRight="18dp" />
 
                 </TableRow>
             </TableLayout>
