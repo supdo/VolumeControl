@@ -157,6 +157,14 @@
 
                 </TableRow>
             </TableLayout>
+             <ToggleButton 
+		        android:id="@+id/testToggle"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:checked="true"
+		        android:textOff="横向排列"
+		        android:textOn="纵向排列"
+		        />
         </LinearLayout>
     </ScrollView>
 
