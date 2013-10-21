@@ -22,16 +22,17 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
-        <receiver android:name="SilenceWidgetProvider" >
+        <receiver android:name="com.supdo.volumecontrol.SilenceWidgetProvider" 
+            android:label="@string/app_name"
+            android:icon="@drawable/ic_volume_system" >
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.supdo.volumecontrol.silence" />
             </intent-filter>
-
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/silence_provider" />
