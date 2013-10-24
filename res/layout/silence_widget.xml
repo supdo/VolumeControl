@@ -3,26 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:gravity="center"
+    android:gravity="top"
     android:orientation="vertical"
     tools:context=".SilenceWidgetProvider" >
 
-    <Button
-        android:id="@+id/btnSilence"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_margin="0dp"
-        android:background="@drawable/corner_button_normal"
-        android:text="静音"
-        android:textColor="#333333"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="静音"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp" />
+    <ImageView
+        android:id="@+id/imgSilence"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/ic_silence_off" />
 
 </LinearLayout>

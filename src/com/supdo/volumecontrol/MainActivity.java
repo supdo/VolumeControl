@@ -5,23 +5,35 @@ import java.util.Map;
 
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Rect;
 import android.text.Layout;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class MainActivity extends Activity {
+	private static final String CREATE_SHORTCUT_ACTION = "com.android.launcher.action.INSTALL_SHORTCUT";
+    private static final String DROP_SHORTCUT_ACTION = "com.android.launcher.action.UNINSTALL_SHORTCUT";
+	private static final String PREFERENCE_KEY_SHORTCUT_EXISTS = "IsShortCutExists";
+	private SharedPreferences sharedPreferences ;
+    private boolean shortCutExists ;
 	
 	private SeekBar sbCalling;
 	private SeekBar sbCalled;
@@ -50,6 +62,7 @@ public class MainActivity extends Activity {
 		findViews();
 		initialActivity();
 		setListeners();
+		
 	}
 
 	private void findViews() {
@@ -115,6 +128,9 @@ public class MainActivity extends Activity {
 		sbSystem.setMax(systemMax);
 		sbSystem.setProgress(systemCurrent);
 		
+		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		shortCutExists = sharedPreferences.getBoolean(PREFERENCE_KEY_SHORTCUT_EXISTS, false);
+		
 	}
 	
 	private void initialMap(){
@@ -147,6 +163,16 @@ public class MainActivity extends Activity {
 		sbAlarms.setOnSeekBarChangeListener(sbAlarmsListener);
 		sbMedia.setOnSeekBarChangeListener(sbMediaListener);
 		sbSystem.setOnSeekBarChangeListener(sbSystemListener);
+		
+		Button addShortCut = (Button)findViewById(R.id.btnAddShortCut);
+		addShortCut.setOnClickListener(new Button.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				initialShortCut();
+			}
+		});
 	}
 	
 	private void setDialogInfo(SeekBar sb){
@@ -271,5 +297,44 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+	        case R.id.btnAddShortCut:
+	        	initialShortCut();
+	            break;
+	        default:
+	            break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	private void initialShortCut(){
+		Intent intent = new Intent(CREATE_SHORTCUT_ACTION);
+        // 设置快捷方式图片
+        intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(this, R.drawable.ic_silence_off));
+        // 设置快捷方式名称
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "静音");
+        // 设置是否允许重复创建快捷方式 false表示不允许
+        //intent.putExtra("duplicate", false);
+        
+        //设置要打开的Activity
+        Intent targetIntent = new Intent();
+        //targetIntent.setAction(Intent.ACTION_MAIN);
+        //targetIntent.addCategory("android.intent.category.LAUNCHER");
+        //ComponentName componentName = new ComponentName(getPackageName(), this.getClass().getName());
+        //targetIntent.setComponent(componentName);
+        intent.setClass(MainActivity.this, SilenceActivity.class);
+        intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, targetIntent);
+
+        // 发送广播
+        sendBroadcast(intent);
+        //修改标志
+        Editor editor = sharedPreferences.edit();
+        editor.putBoolean(PREFERENCE_KEY_SHORTCUT_EXISTS, true);
+        editor.commit();
+	}
+	
 
 }
