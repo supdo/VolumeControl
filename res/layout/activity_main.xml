@@ -159,14 +159,14 @@
             </TableLayout>
 
              <Button
-                 android:id="@+id/btnAddShortCut"
+                 android:id="@+id/btnSlience"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:layout_marginTop="10dp"
                  android:background="@drawable/corner_button_normal"
                  android:paddingLeft="10dp"
                  android:paddingRight="10dp"
-                 android:text="添加快捷方式" />
+                 android:text="静音" />
 
         </LinearLayout>
     </ScrollView>

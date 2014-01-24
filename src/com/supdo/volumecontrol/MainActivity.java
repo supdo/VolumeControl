@@ -41,6 +41,7 @@ public class MainActivity extends Activity {
 	private SeekBar sbAlarms;
 	private SeekBar sbMedia;
 	private SeekBar sbSystem;
+	private Button btnSlience;
 	
 	private Display defaultSize;
 	private AudioManager mAudioManager;
@@ -72,6 +73,7 @@ public class MainActivity extends Activity {
 		sbAlarms = (SeekBar)findViewById(R.id.sbAlarms);
 		sbMedia = (SeekBar)findViewById(R.id.sbMedia);
 		sbSystem = (SeekBar)findViewById(R.id.sbSystem);
+		btnSlience = (Button)findViewById(R.id.btnSlience);
 	}
 	
 	private void initialActivity() {
@@ -163,18 +165,14 @@ public class MainActivity extends Activity {
 		sbAlarms.setOnSeekBarChangeListener(sbAlarmsListener);
 		sbMedia.setOnSeekBarChangeListener(sbMediaListener);
 		sbSystem.setOnSeekBarChangeListener(sbSystemListener);
-		
-		Button addShortCut = (Button)findViewById(R.id.btnAddShortCut);
-		addShortCut.setOnClickListener(new Button.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				initialShortCut();
-			}
-		});
+		btnSlience.setOnClickListener(btnSlienceListenter);
 	}
-	
+	private Button.OnClickListener btnSlienceListenter = new Button.OnClickListener(){
+		@Override
+		public void onClick(View view) {
+			
+		}
+	};
 	private void setDialogInfo(SeekBar sb){
         int[] location = new  int[2] ;
         sb.getLocationInWindow(location); //获取在当前窗口内的绝对坐标
@@ -297,44 +295,4 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()) {
-	        case R.id.btnAddShortCut:
-	        	initialShortCut();
-	            break;
-	        default:
-	            break;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	private void initialShortCut(){
-		Intent intent = new Intent(CREATE_SHORTCUT_ACTION);
-        // 设置快捷方式图片
-        intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, Intent.ShortcutIconResource.fromContext(this, R.drawable.ic_silence_off));
-        // 设置快捷方式名称
-        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "静音");
-        // 设置是否允许重复创建快捷方式 false表示不允许
-        //intent.putExtra("duplicate", false);
-        
-        //设置要打开的Activity
-        Intent targetIntent = new Intent();
-        //targetIntent.setAction(Intent.ACTION_MAIN);
-        //targetIntent.addCategory("android.intent.category.LAUNCHER");
-        //ComponentName componentName = new ComponentName(getPackageName(), this.getClass().getName());
-        //targetIntent.setComponent(componentName);
-        intent.setClass(MainActivity.this, SilenceActivity.class);
-        intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, targetIntent);
-
-        // 发送广播
-        sendBroadcast(intent);
-        //修改标志
-        Editor editor = sharedPreferences.edit();
-        editor.putBoolean(PREFERENCE_KEY_SHORTCUT_EXISTS, true);
-        editor.commit();
-	}
-	
-
 }

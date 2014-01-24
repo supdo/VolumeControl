@@ -33,18 +33,6 @@
                     android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>
         </activity>
-        
-        <receiver android:name="com.supdo.volumecontrol.SilenceWidgetProvider" 
-            android:label="@string/onekey_silence"
-            android:icon="@drawable/ic_silence_on" >
-            <intent-filter >
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="com.supdo.volumecontrol.silence" />
-            </intent-filter>
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/silence_provider" />
-        </receiver>
     </application>
 
 </manifest>
