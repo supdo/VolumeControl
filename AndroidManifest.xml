@@ -8,8 +8,6 @@
         android:minSdkVersion="11"
         android:targetSdkVersion="18" />
 	<!-- 创建桌面快捷方式的权限 -->
-    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/>
-    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
     <!-- 音量控制权限 -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 <!--     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
