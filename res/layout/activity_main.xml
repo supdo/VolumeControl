@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true" >
 
-        <LinearLayout
+      <LinearLayout
             android:id="@+id/mainLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -158,15 +158,17 @@
                 </TableRow>
             </TableLayout>
 
-             <Button
-                 android:id="@+id/btnSlience"
-                 android:layout_width="wrap_content"
+             <Switch
+                 android:id="@+id/swSilence"
+                 android:layout_width="fill_parent"
                  android:layout_height="wrap_content"
-                 android:layout_marginTop="10dp"
-                 android:background="@drawable/corner_button_normal"
-                 android:paddingLeft="10dp"
-                 android:paddingRight="10dp"
-                 android:text="静音" />
+                 android:layout_marginTop="12dp"
+                 android:layout_marginRight="8dp"
+                 android:layout_marginLeft="8dp"
+                 android:text="静音"
+                 android:textOn="静音关闭中"
+                 android:textOff="静音关闭中"
+                  />
 
         </LinearLayout>
     </ScrollView>

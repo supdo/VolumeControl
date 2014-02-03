@@ -24,6 +24,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -41,7 +43,7 @@ public class MainActivity extends Activity {
 	private SeekBar sbAlarms;
 	private SeekBar sbMedia;
 	private SeekBar sbSystem;
-	private Button btnSlience;
+	private Switch swSlience;
 	
 	private Display defaultSize;
 	private AudioManager mAudioManager;
@@ -73,7 +75,7 @@ public class MainActivity extends Activity {
 		sbAlarms = (SeekBar)findViewById(R.id.sbAlarms);
 		sbMedia = (SeekBar)findViewById(R.id.sbMedia);
 		sbSystem = (SeekBar)findViewById(R.id.sbSystem);
-		btnSlience = (Button)findViewById(R.id.btnSlience);
+		swSlience = (Switch)findViewById(R.id.swSilence);
 	}
 	
 	private void initialActivity() {
@@ -165,14 +167,23 @@ public class MainActivity extends Activity {
 		sbAlarms.setOnSeekBarChangeListener(sbAlarmsListener);
 		sbMedia.setOnSeekBarChangeListener(sbMediaListener);
 		sbSystem.setOnSeekBarChangeListener(sbSystemListener);
-		btnSlience.setOnClickListener(btnSlienceListenter);
+		swSlience.setOnCheckedChangeListener(swSlienceListenter);
+		
 	}
-	private Button.OnClickListener btnSlienceListenter = new Button.OnClickListener(){
+	
+	private CompoundButton.OnCheckedChangeListener swSlienceListenter = new CompoundButton.OnCheckedChangeListener(){
 		@Override
-		public void onClick(View view) {
-			
+		public void onCheckedChanged(CompoundButton buttonView,
+				boolean isChecked) {
+			// TODO Auto-generated method stub
+			if (isChecked) { 
+				mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+			}else{
+				mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+			}
 		}
 	};
+
 	private void setDialogInfo(SeekBar sb){
         int[] location = new  int[2] ;
         sb.getLocationInWindow(location); //获取在当前窗口内的绝对坐标
@@ -190,7 +201,7 @@ public class MainActivity extends Activity {
 	private  OnSeekBarChangeListener  sbCallingListener = new OnSeekBarChangeListener() {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progress, 1);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL, progress, 0);
 			setDialogInfo(seekBar);
 		}
 		@Override
@@ -207,7 +218,7 @@ public class MainActivity extends Activity {
 	private  OnSeekBarChangeListener  sbCalledListener = new OnSeekBarChangeListener() {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mAudioManager.setStreamVolume(AudioManager.STREAM_RING, progress, AudioManager.FLAG_ALLOW_RINGER_MODES);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_RING, progress, 0);
 			setDialogInfo(seekBar);
 		}
 		@Override
@@ -224,7 +235,7 @@ public class MainActivity extends Activity {
 	private  OnSeekBarChangeListener  sbChatListener = new OnSeekBarChangeListener() {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, progress, AudioManager.FLAG_PLAY_SOUND);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, progress, 0);
 			setDialogInfo(seekBar);
 		}
 		@Override
@@ -241,7 +252,7 @@ public class MainActivity extends Activity {
 	private  OnSeekBarChangeListener  sbAlarmsListener = new OnSeekBarChangeListener() {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, progress, 1);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, progress, 0);
 			setDialogInfo(seekBar);
 		}
 		@Override
@@ -258,7 +269,7 @@ public class MainActivity extends Activity {
 	private  OnSeekBarChangeListener  sbMediaListener = new OnSeekBarChangeListener() {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 1);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 			setDialogInfo(seekBar);
 		}
 		@Override
@@ -275,7 +286,7 @@ public class MainActivity extends Activity {
 	private  OnSeekBarChangeListener  sbSystemListener = new OnSeekBarChangeListener() {
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, progress, 1);
+			mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, progress, 0);
 			setDialogInfo(seekBar);
 		}
 		@Override

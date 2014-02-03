@@ -7,5 +7,6 @@
     <string name="calling_info">通话音量</string>
     
     <string name="onekey_silence">一键静音</string>
+    <string name="action_aboutme">关于</string>
 
 </resources>

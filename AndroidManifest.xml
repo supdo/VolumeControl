@@ -5,7 +5,7 @@
     android:versionName="1.0.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="18" />
 	<!-- 创建桌面快捷方式的权限 -->
     <!-- 音量控制权限 -->
