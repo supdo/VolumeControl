@@ -1,15 +1,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
+	 <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_action_search"
+        android:orderInCategory="30"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_search">
+    </item>
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_action_settings"
+        android:orderInCategory="30"
         android:showAsAction="always"
         android:title="@string/action_settings">
     </item>
-	<item
-        android:id="@+id/action_aboutme"
-        android:orderInCategory="100"
+    <item
+        android:icon="@drawable/ic_action_core_overflow"
+        android:id="@+id/more"
+        android:orderInCategory="70"
         android:showAsAction="always"
-        android:title="@string/action_aboutme">
+        android:title="更多">
+        <menu>
+            <item
+	        android:id="@+id/action_aboutme"
+	        android:icon="@drawable/ic_action_action_about"
+	        android:orderInCategory="50"
+	        android:showAsAction="always"
+	        android:title="@string/action_aboutme">
+    		</item>
+        </menu>
     </item>
 </menu>

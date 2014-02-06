@@ -131,9 +131,13 @@ public class MainActivity extends Activity {
 		int systemCurrent = mAudioManager.getStreamVolume(AudioManager.STREAM_SYSTEM);
 		sbSystem.setMax(systemMax);
 		sbSystem.setProgress(systemCurrent);
+		//静音
+		int mode=mAudioManager.getRingerMode();
+		if(mode == AudioManager.RINGER_MODE_SILENT){swSlience.setChecked(true);
+		}else{swSlience.setChecked(false);}
 		
 		sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		shortCutExists = sharedPreferences.getBoolean(PREFERENCE_KEY_SHORTCUT_EXISTS, false);
+		//shortCutExists = sharedPreferences.getBoolean(PREFERENCE_KEY_SHORTCUT_EXISTS, false);
 		
 	}
 	
@@ -177,9 +181,29 @@ public class MainActivity extends Activity {
 				boolean isChecked) {
 			// TODO Auto-generated method stub
 			if (isChecked) { 
+				SharedPreferences.Editor mEditor = sharedPreferences.edit();
+				mEditor.putInt(titleMap.get(R.id.sbCalling).toString(), mAudioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
+				mEditor.putInt(titleMap.get(R.id.sbCalled).toString(), mAudioManager.getStreamVolume(AudioManager.STREAM_RING));
+				mEditor.putInt(titleMap.get(R.id.sbChat).toString(), mAudioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+				mEditor.putInt(titleMap.get(R.id.sbAlarms).toString(), mAudioManager.getStreamVolume(AudioManager.STREAM_ALARM));
+				mEditor.putInt(titleMap.get(R.id.sbMedia).toString(), mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+				mEditor.putInt(titleMap.get(R.id.sbSystem).toString(), mAudioManager.getStreamVolume(AudioManager.STREAM_SYSTEM));
+				mEditor.commit();
 				mAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+				sbCalling.setProgress(mAudioManager.getStreamVolume(AudioManager.STREAM_VOICE_CALL));
+				sbCalled.setProgress(mAudioManager.getStreamVolume(AudioManager.STREAM_RING));
+				sbChat.setProgress(mAudioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION));
+				sbAlarms.setProgress(mAudioManager.getStreamVolume(AudioManager.STREAM_ALARM));
+				sbMedia.setProgress(mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+				sbSystem.setProgress(mAudioManager.getStreamVolume(AudioManager.STREAM_SYSTEM));
 			}else{
 				mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+				sbCalling.setProgress(sharedPreferences.getInt(titleMap.get(R.id.sbCalling).toString(), 0));
+				sbCalled.setProgress(sharedPreferences.getInt(titleMap.get(R.id.sbCalled).toString(), 0));
+				sbChat.setProgress(sharedPreferences.getInt(titleMap.get(R.id.sbChat).toString(), 0));
+				sbAlarms.setProgress(sharedPreferences.getInt(titleMap.get(R.id.sbAlarms).toString(), 0));
+				sbMedia.setProgress(sharedPreferences.getInt(titleMap.get(R.id.sbMedia).toString(), 0));
+				sbSystem.setProgress(sharedPreferences.getInt(titleMap.get(R.id.sbSystem).toString(), 0));
 			}
 		}
 	};

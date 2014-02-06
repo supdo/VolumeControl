@@ -166,7 +166,7 @@
                  android:layout_marginRight="8dp"
                  android:layout_marginLeft="8dp"
                  android:text="静音"
-                 android:textOn="静音关闭中"
+                 android:textOn="静音开启中"
                  android:textOff="静音关闭中"
                   />
 
